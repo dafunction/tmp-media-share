@@ -20,7 +20,7 @@ High-performance HTTP media server intended for streaming to VLC clients on othe
    start-share /path/to/your/media
    ```
 
-3. Access the playlist on your Shield:
+3. Access the playlist in VLC (VLC > Stream):
    ```
    http://<your-ip>:8080/playlist.m3u
    ```
