@@ -25,7 +25,7 @@
           echo "Generating playlist for: $MEDIA_PATH"
           echo "#EXTM3U" > "$PLAYLIST"
           
-          find "$MEDIA_PATH" -maxdepth 1 -type f \( -iname "*.mp4" -o -iname "*.mkv" -o -iname "*.mov" -o -iname "*.avi" \) | while read -r file; do
+          find "$MEDIA_PATH" -maxdepth 1 -type f \( -iname "*.mp4" -o -iname "*.mkv" -o -iname "*.mov" -o -iname "*.avi" \) | sort -V | while read -r file; do
             filename=$(basename "$file")
             # rclone handles spaces better, but M3U still likes encoded URLs
             url_filename=$(echo "$filename" | sed 's/ /%20/g')
@@ -50,6 +50,7 @@
         '';
       in
       {
+        packages.default = start-share;
         devShells.default = pkgs.mkShell {
           buildInputs = [ pkgs.rclone start-share ];
         };
